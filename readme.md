@@ -5,7 +5,7 @@ A tile-matching game.
 
 ## View site
 
-hosted at [elasticbeanstalk.com](dragon-drop.xyetrvyk25.us-west-2.elasticbeanstalk.com)
+Hosted at [elasticbeanstalk.com](http://dragon-drop.xyetrvyk25.us-west-2.elasticbeanstalk.com)
 
 ## Run locally
 
