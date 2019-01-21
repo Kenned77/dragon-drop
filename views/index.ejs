@@ -1,5 +1,49 @@
-<title>Dragon Drop</title>
 
-<h1>Dragon Drop</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script src="/javascripts/script.js"></script>
+        <style>
+            td {
+                border: 0.3px solid black;
+                height: 30px;
+                width: 30px;
+                background-color: #7ee801;
+            }
+
+            table {
+                border: 5px solid black;
+            }
+
+            .board-frame {
+                text-align: center;
+            }
+        </style>
+
+        <title>Dragon Drop</title>
+    </head>
+
+    <body>
+        <h1>Dragon Drop</h1>
+
+        <div class="main">
+            <div class="header">
+                <div>Best 2291</div>
+                <div>Score 0</div>
+            </div>
+
+            <div class="board-frame">
+                <div id="board"></div>
+            </div>
+
+            <div class="next-piece">
+                <div class="next-1">NEXT PIECE</div>
+                <div class="next-2">NEXT PIECE</div>
+                <div class="next-3">NEXT PIECE</div>
+            </div>
+        </div>
+
+        <script src="/javascripts/script.js"></script>
+    </body>
+</html>
