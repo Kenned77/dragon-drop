@@ -5,18 +5,15 @@ A tile-matching game.
 
 ## View site
 
-[dragon-drop.xyetrvyk25.us-west-2.elasticbeanstalk.com]
+hosted at [elasticbeanstalk.com](dragon-drop.xyetrvyk25.us-west-2.elasticbeanstalk.com)
 
 ## Run locally
 
-Download and install project:
+Download project, install, and start local server:
 ```
 git clone git@github.com:bananno/dragon-drop.git
 cd dragon-drop
 npm install
-
-Start local server:
-```
 npm start
 ```
 
