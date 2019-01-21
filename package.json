@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bananno/dragon-drop/issues"
   },
-  "homepage": "https://github.com/bananno/dragon-drop#readme"
+  "homepage": "https://github.com/bananno/dragon-drop#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
