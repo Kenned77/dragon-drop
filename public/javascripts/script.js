@@ -18,7 +18,6 @@ function Board()  {
     var nextRow = $("<tr>");
     this.element.append(nextRow);
     for(var j = 0; j < this.size; j++) {
-      // var nextColumn = $("<td>");
       var nextColumn = $("<td>").attr( 'id', 'cell-' + this.id);
       nextRow.append(nextColumn);
       tableCells[i][j] = nextColumn;
