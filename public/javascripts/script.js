@@ -11,6 +11,7 @@ function startGame()  {
 function Board()  {
   this.size = 10;
   this.element = $("<table>");
+  this.element.addClass('testClass');
   this.id = 1;
   for(var i = 0; i < this.size; i++)  {
     tableCells[i] = [];
