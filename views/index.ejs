@@ -13,40 +13,34 @@
                 border: 0.3px solid black;
                 height: 30px;
                 width: 30px;
-                /*background-color: #7ee801;*/
             }
 
             table {
                 border: 5px solid black;
             }
 
-            .next-piece {
-                /*margin: auto;*/
-                border: 1px solid black;
-                height: 100px;
+            .title {
+                text-align: center;
             }
 
-            .next-1 {
-                background-color: blue;
-                width: 100px;
-                height: 80px;
-                margin-right: 10px;
-                float: left;
+            .header {
+                margin: auto;
+                text-align:center;
+                width: 360px;
             }
 
-            .next-2 {
-                background-color: green;
-                width: 100px;
-                height: 80px;
-                margin-right: 10px;
-                float: left;
+            .best-score {
+                border-top: 0.1px solid black;
+                border-right: 0.1px solid black;
+                border-left: 0.1px solid black;
+                text-align: left;
+                padding: 5px;
             }
 
-            .next-3 {
-                background-color: pink;
-                width: 100px;
-                height: 80px;
-                float: left;
+            .current-score {
+                border: 0.1px solid black;
+                text-align:left;
+                padding: 5px;
             }
 
             .board {
@@ -55,36 +49,43 @@
                 background-size: cover;
             }
 
+            .next-pieces {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .next-piece {
+                width: 100px;
+                height: 80px;
+                margin: 5px;
+                padding: 5px;
+                border: 0.5px solid black;
+                display:inline-block;
+            }
+
         </style>
 
         <title>Dragon Drop</title>
     </head>
 
     <body>
-        <center>
-            <h1>Dragon Drop</h1>
-        </center>
+        <h1 class="title">Dragon Drop</h1>
 
         <div class="main">
             <div class="header">
-                <center>
-                    <div>Best 2291</div>
-                    <div>Score 0</div>
-                </center>
+                <div class="best-score">Best 2291</div>
+                <div class="current-score">Score 0</div>
             </div>
 
             <div class="board-frame">
-                <!-- <center> -->
-                    <div id="board"></div>
-                <!-- </center> -->
+                <div id="board"></div>
             </div>
 
-            <div class="next-piece">
-                <!-- <center> -->
-                    <div class="next-1">NEXT PIECE 1</div>
-                    <div class="next-2">NEXT PIECE 2</div>
-                    <div class="next-3">NEXT PIECE 3</div>
-                <!-- </center> -->
+            <div class="next-pieces">
+                <div class="next-piece">NEXT PIECE 1</div>
+                <div class="next-piece">NEXT PIECE 2</div>
+                <div class="next-piece">NEXT PIECE 3</div>
             </div>
         </div>
 
