@@ -26,20 +26,6 @@ var Board = function() {
   }
 }
 
-var toggle = false;
-
-function testingToggle() {
-  if (toggle) {
-    $('#bla').css("background-color", 'black');
-  } else {
-    $('#bla').css("background-color", 'red');
-  }
-
-  toggle = !toggle;
-}
-
-testingToggle();
-
 var scuareColor = "#4e1608";
 
 function square() {
