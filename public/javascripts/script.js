@@ -55,6 +55,18 @@ function placePiece() {
   } else if (type === 'rectangle-3-horizontal') {
     pieceElligalMove = [9, 10, 19, 20, 29, 30, 39, 40, 49, 50, 59, 60, 69, 70, 79, 80, 89, 90, 99];
     piece = [0, 1, 2];
+  } else if (type === 'rectangle-4-vertical') {
+    pieceElligalMove = [71];
+    piece = [0, 10, 20, 30];
+  } else if (type === 'rectangle-4-horizontal') {
+    pieceElligalMove = [8 ,9, 10, 18, 19, 20, 28, 29, 30, 38, 39, 40, 48, 49, 50, 58, 59, 60, 69, 69, 70, 78, 79, 80, 88, 89, 90, 98];
+    piece = [0, 1, 2, 3];
+  } else if (type === 'rectangle-5-vertical') {
+    pieceElligalMove = [61];
+    piece = [0, 10, 20, 30, 40];
+  } else if (type === 'rectangle-5-horizontal') {
+    pieceElligalMove = [7, 8, 9, 10, 17, 18, 19, 20, 27, 28, 29, 30, 37, 38, 39, 40, 47, 48, 49, 50, 57, 58, 59, 60, 67, 68, 69, 70, 77, 78, 79, 80, 87, 88, 89, 90, 97];
+    piece = [0, 1, 2, 3, 4];
   } else {
     console.log('not quite yet');
   }
