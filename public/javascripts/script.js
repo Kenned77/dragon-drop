@@ -26,40 +26,43 @@ var Board = function() {
   }
 }
 
-var scuareColor = "#4e1608";
-var color = "color";
-
 function place() {
-  var typeTest, startNum, inFrame, taken
-  typeTest = document.getElementById('typeTest').value;
+  var type, startNum, inFrame, taken
+  type = document.getElementById('type').value;
   startNum = parseInt(document.getElementById("startNum").value);
   inFrame = true;
   taken = false;
 
-  if (startNum >= pieces[typeTest][0][pieces[typeTest][0].length - 1]) {
+  if (startNum >= pieces[type][0][pieces[type][0].length - 1]) {
       inFrame = false;
   } else {
-    for ( var i = 0; i < pieces[typeTest][0].length; i++ ) {
-      if (startNum === pieces[typeTest][0][i]) {
+    for ( var i = 0; i < pieces[type][0].length; i++ ) {
+      if (startNum === pieces[type][0][i]) {
         inFrame = false;
       }
     }
   }
 
   if (inFrame) {
-    for (var i = 0; i < pieces[typeTest][1].length; i++) {
-      if ($('#cell-' + (startNum + pieces[typeTest][1][i])).hasClass('color')) {
+    for (var i = 0; i < pieces[type][1].length; i++) {
+      if ($('#cell-' + (startNum + pieces[type][1][i])).hasClass('color')) {
         taken = true;
       }
     }
 
     if (!taken) {
-      for (var i = 0; i < pieces[typeTest][1].length; i++) {
-        $('#cell-' + (startNum + pieces[typeTest][1][i])).removeClass('no-color').addClass('color');
+      for (var i = 0; i < pieces[type][1].length; i++) {
+        $('#cell-' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
       }
     } else {
       console.log("nope!!");
     }
+  }
+}
+
+function clearBoard() {
+  for ( var i = 1; i <= 100; i++ ) {
+    $('#cell-' + i).removeClass('color').addClass('no-color');
   }
 }
 
@@ -93,7 +96,7 @@ function place() {
 
 
 
-
+// var scuareColor = "#4e1608";
 
 // function placePiece() {
 //   var type, startNum, pieceElligalMove, piece, inFrame
