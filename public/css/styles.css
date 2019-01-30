@@ -58,6 +58,17 @@ table {
 }
 
 
-/*#cell-45 {
-    background-color: green;
-}*/
+.color {
+    background-color: white;
+    /*background-color: #4e1608;*/
+}
+
+.no-color {
+    background-color: transparent;
+}
+
+
+
+
+
+
