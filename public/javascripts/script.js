@@ -27,6 +27,7 @@ var Board = function() {
 }
 
 var scuareColor = "#4e1608";
+var color = "color";
 
 function placePiece() {
   var type, startNum, pieceElligalMove, piece, inFrame
@@ -115,16 +116,12 @@ function placePiece() {
     console.log('not quite yet');
   }
 
-  // console.log(startNum);
-
   if (startNum >= pieceElligalMove[pieceElligalMove.length - 1]) {
       inFrame = false;
-      console.log('nope cant do!');
   } else {
     for ( var i = 0; i < pieceElligalMove.length; i++ ) {
       if (startNum === pieceElligalMove[i]) {
         inFrame = false;
-        console.log('nope cant do!');
       }
     }
   }
@@ -201,11 +198,12 @@ var pieces = [ // index 0 legal move, index 1 the piece type
   ]
 ];
 
-function testing() {
-  var typeTest, startNum, inFrame
+function place() {
+  var typeTest, startNum, inFrame, taken
   typeTest = document.getElementById('typeTest').value;
   startNum = parseInt(document.getElementById("startNum").value);
   inFrame = true;
+  taken = false;
 
   if (startNum >= pieces[typeTest][0][pieces[typeTest][0].length - 1]) {
       inFrame = false;
@@ -217,16 +215,36 @@ function testing() {
     }
   }
 
-  for ( var i = 1; i <= 100; i++ ) {
-    $('#cell-' + i).css("background-color", 'transparent');
-  }
-
   if (inFrame) {
     for (var i = 0; i < pieces[typeTest][1].length; i++) {
-      $('#cell-' + (startNum + pieces[typeTest][1][i])).css("background-color", scuareColor);
+      if ($('#cell-' + (startNum + pieces[typeTest][1][i])).hasClass('color')) {
+        taken = true;
+      }
+    }
+
+    if (!taken) {
+      for (var i = 0; i < pieces[typeTest][1].length; i++) {
+        $('#cell-' + (startNum + pieces[typeTest][1][i])).removeClass('no-color').addClass('color');
+      }
+    } else {
+      console.log("nope!!");
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
