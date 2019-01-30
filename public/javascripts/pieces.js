@@ -1,4 +1,4 @@
-var pieces = [ // index 0 legal move, index 1 the piece type
+const pieces = [ // index 0 legal move, index 1 the piece type
   [
     [101], [0] // square small.
   ],
