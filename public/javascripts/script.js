@@ -27,7 +27,8 @@ var Board = function() {
 }
 
 function place() {
-  var type, startNum, inFrame, taken
+  var type, startNum, inFrame, taken, start
+  start = 1;
   type = document.getElementById('type').value;
   startNum = parseInt(document.getElementById("startNum").value);
   inFrame = true;
@@ -58,7 +59,138 @@ function place() {
       console.log("nope!!");
     }
   }
+
+  for ( var i = 0; i < 10; i++ ) {
+    for ( var j = 0; j < 10; j++ ) {
+      if ( $('#cell-' + start).hasClass('color')) {
+        arr[i][j] = 1;
+        start++;
+      } else {
+        arr[i][j] = 0;
+        start++;
+      }
+    }
+  }
+
+  console.log(arr);
 }
+
+function testing() {
+  var arrRow = [];
+  var arrCol = [];
+  var tempArr = [];
+
+  for ( var row = 0; row < 10; row++ ) {
+    tempArr = [];
+    for ( var col = 0; col < 10; col++ ) {
+      if ( arr[row][col] === 1) {
+        tempArr[col] = 'ja';
+      }
+    }
+
+    if (tempArr.length === 10) {
+      arrRow.push(row);
+    }
+  }
+
+  console.log('Row ' + arrRow);
+  console.log(arrRow);
+
+
+  for ( var col = 0; col < 10; col++ ) {
+    for ( var row = 0; row < 10; row++ ) {
+      tempArr = [];
+      if ( arr[row][col] === 1) {
+        tempArr[row] = 'ja';
+      }
+    }
+
+    if (tempArr.length === 10) {
+      arrCol.push(col);
+    }
+  }
+
+  console.log('Col ' + arrCol);
+  console.log(arrCol);
+
+
+  // arrRow = [0, 2, 6];
+
+  for ( var row = 0; row < arrRow.length; row++ ) {
+    for ( var col = 1; col <= 10; col++ ) {
+      $('#cell-' + (arrRow[row] * 10 + col)).removeClass('color').addClass('no-color');
+    }
+  }
+
+  // arrCol = [0, 2, 6]
+
+  for ( var col = 0; col < arrCol.length; col++ ) {
+    for ( var row = 1; row <= 100; row += 10 ) {
+      $('#cell-' + (arrCol[col] + row)).removeClass('color').addClass('no-color');
+    }
+  }
+
+  for ( var row = 0; row < arrRow.length; row++ ) {
+    for ( var col = 0; col < 10; col++ ) {
+      arr[row][col] = 0;
+    }
+  }
+
+  for ( var col = 0; col < arrCol.length; col++ ) {
+    for ( var row = 0; row < 10; row++ ) {
+      arr[row][arrCol[col]] = 0;
+    }
+  }
+
+  console.log(arr);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function clearBoard() {
   for ( var i = 1; i <= 100; i++ ) {
