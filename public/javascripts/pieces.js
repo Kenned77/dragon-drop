@@ -1,14 +1,14 @@
 
 
+// Creating an array to replicate the board to v
+var arr = [[]];
 
-  var arr = [[]];
-
-  for ( var i = 0; i < 10; i++ ) {
-    arr[i] = [];
-    for ( var j = 0; j < 10; j++ ) {
-      arr[i][j] = null;
-    }
+for ( var i = 0; i < 10; i++ ) {
+  arr[i] = [];
+  for ( var j = 0; j < 10; j++ ) {
+    arr[i][j] = null;
   }
+}
 
 const pieces = [ // index 0 legal move, index 1 the piece type
   [
