@@ -60,6 +60,7 @@ function place() {
     }
   }
 
+  // Create a copy of the map to view in the console
   for ( var i = 0; i < 10; i++ ) {
     for ( var j = 0; j < 10; j++ ) {
       if ( $('#cell-' + start).hasClass('color')) {
@@ -78,41 +79,32 @@ function place() {
 function testing() {
   var arrRow = [];
   var arrCol = [];
-  var tempArr = [];
 
   for ( var row = 0; row < 10; row++ ) {
-    tempArr = [];
+    var count = 1;
     for ( var col = 0; col < 10; col++ ) {
       if ( arr[row][col] === 1) {
-        tempArr[col] = 'ja';
+        count++
       }
     }
 
-    if (tempArr.length === 10) {
+    if (count > 10) {
       arrRow.push(row);
     }
   }
 
-  console.log('Row ' + arrRow);
-  console.log(arrRow);
-
-
   for ( var col = 0; col < 10; col++ ) {
+    var count = 1;
     for ( var row = 0; row < 10; row++ ) {
-      tempArr = [];
       if ( arr[row][col] === 1) {
-        tempArr[row] = 'ja';
+        count++;
       }
     }
 
-    if (tempArr.length === 10) {
+    if (count > 10) {
       arrCol.push(col);
     }
   }
-
-  console.log('Col ' + arrCol);
-  console.log(arrCol);
-
 
   // arrRow = [0, 2, 6];
 
