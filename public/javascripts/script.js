@@ -26,6 +26,8 @@ var Board = function() {
   }
 }
 
+var score = 0;
+
 function place() {
   var type, startNum, inFrame, taken, start
   start = 1;
@@ -55,8 +57,8 @@ function place() {
       for (var i = 0; i < pieces[type][1].length; i++) {
         $('#cell-' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
       }
-    } else {
-      console.log("nope!!");
+
+      score += pieces[type][1].length;
     }
   }
 
@@ -73,6 +75,7 @@ function place() {
     }
   }
 
+  document.getElementById('score').textContent = score;
   console.log(arr);
 }
 
@@ -133,6 +136,11 @@ function testing() {
       arr[row][arrCol[col]] = 0;
     }
   }
+
+  score += arrRow.length * 10;
+  score += arrCol.length * 10;
+
+  document.getElementById('score').textContent = score;
 
   console.log(arr);
 }
