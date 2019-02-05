@@ -62,7 +62,10 @@ function place() {
         $('#cell-' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
       }
 
-      score += pieces[type][1].length;
+      if ( startNum > 0) {
+        score += pieces[type][1].length;
+        displayScore(score);
+      }
     }
   }
 
@@ -78,9 +81,6 @@ function place() {
       }
     }
   }
-
-  displayScore(score);
-  console.log(arr);
 }
 
 function testing() {
