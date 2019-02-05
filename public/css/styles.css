@@ -38,7 +38,9 @@ table {
 
 .board {
     margin: auto;
-    background-image: url(http://www.animatedimages.org/data/media/188/animated-dragon-image-0204.gif);
+    /*background-image: url(https://image.freepik.com/free-vector/angry-dragon-silhouette_23-2147510357.jpg);*/
+    background-image: url(https://www.howtotrainyourdragon.com/images/uploads/dragons/_400/dragons_hero_Sentinel_P2.jpg);
+    /*background-image: url(http://www.animatedimages.org/data/media/188/animated-dragon-image-0204.gif); // original image*/
     background-size: cover;
 }
 
@@ -59,8 +61,8 @@ table {
 
 
 .color {
-    background-color: white;
-    /*background-color: #4e1608;*/
+    /*background-color: white;*/
+    background-color: #4e1608;
 }
 
 .no-color {
