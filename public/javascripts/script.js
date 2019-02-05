@@ -28,6 +28,10 @@ var Board = function() {
 
 var score = 0;
 
+const displayScore = (sc) => {
+  document.getElementById('score').textContent = sc;
+}
+
 function place() {
   var type, startNum, inFrame, taken, start
   start = 1;
@@ -75,7 +79,7 @@ function place() {
     }
   }
 
-  document.getElementById('score').textContent = score;
+  displayScore(score);
   console.log(arr);
 }
 
@@ -140,7 +144,7 @@ function testing() {
   score += arrRow.length * 10;
   score += arrCol.length * 10;
 
-  document.getElementById('score').textContent = score;
+  displayScore(score);
 
   console.log(arr);
 }
