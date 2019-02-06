@@ -1,12 +1,42 @@
 
 
 // Creating an array to replicate the board to v
-var arr = [[]];
 
-for ( var i = 0; i < 10; i++ ) {
-  arr[i] = [];
-  for ( var j = 0; j < 10; j++ ) {
-    arr[i][j] = null;
+const createArr = (arr) => {
+  for ( var i = 0; i < 10; i++ ) {
+    arr[i] = [];
+    for ( var j = 0; j < 10; j++ ) {
+      arr[i][j] = null;
+    }
+  }
+
+  return arr;
+}
+
+const dublicateGridToArr = (arr) => {
+  var start = 1;
+  for ( var i = 0; i < 10; i++ ) {
+    for ( var j = 0; j < 10; j++ ) {
+      if ( $('#cell-' + start).hasClass('color')) {
+        arr[i][j] = 1;
+        start++;
+      } else {
+        arr[i][j] = 0;
+        start++;
+      }
+    }
+  }
+}
+
+const clearBoard = () => {
+  if (confirm('are you sure?')) {
+    for ( var i = 1; i <= 100; i++ ) {
+      $('#cell-' + i).removeClass('color').addClass('no-color');
+    }
+
+    score = 0;
+    displayScore(score);
+    createArr(arr);
   }
 }
 
