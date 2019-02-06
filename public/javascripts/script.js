@@ -1,9 +1,12 @@
 window.onload = function() {
-  tableCells = [];
   startGame();
 }
 
-var startGame = function() {
+var tableCells = [];
+var score = 0;
+var arr = [[]];
+
+var startGame = () => {
   gameBoard = new Board();
   $("#board").append(gameBoard.element);
 }
@@ -26,15 +29,20 @@ var Board = function() {
   }
 }
 
-var score = 0;
+let displayScore = (sc, row, col) => {
+  if (row) {
+    sc += row.length * 10;
+  }
 
-const displayScore = (sc) => {
+  if (col) {
+    sc += col.length * 10;
+  }
+
   document.getElementById('score').textContent = sc;
 }
 
-function place() {
-  var type, startNum, inFrame, taken, start
-  start = 1;
+let place = () => {
+  var type, startNum, inFrame, taken
   type = document.getElementById('type').value;
   startNum = parseInt(document.getElementById("startNum").value);
   inFrame = true;
@@ -62,28 +70,22 @@ function place() {
         $('#cell-' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
       }
 
-      if ( startNum > 0) {
+      if (startNum > 0) {
         score += pieces[type][1].length;
         displayScore(score);
       }
     }
   }
 
-  // Create a copy of the map to view in the console
-  for ( var i = 0; i < 10; i++ ) {
-    for ( var j = 0; j < 10; j++ ) {
-      if ( $('#cell-' + start).hasClass('color')) {
-        arr[i][j] = 1;
-        start++;
-      } else {
-        arr[i][j] = 0;
-        start++;
-      }
-    }
-  }
+  // Create empty 10 * 10 empty array
+  createArr(arr);
+
+  // Create a copy of the grid based on which og the cells have a class of color
+  dublicateGridToArr(arr);
+  checkAndREmove();
 }
 
-function testing() {
+let checkAndREmove = () => {
   var arrRow = [];
   var arrCol = [];
 
@@ -113,15 +115,11 @@ function testing() {
     }
   }
 
-  // arrRow = [0, 2, 6];
-
   for ( var row = 0; row < arrRow.length; row++ ) {
     for ( var col = 1; col <= 10; col++ ) {
       $('#cell-' + (arrRow[row] * 10 + col)).removeClass('color').addClass('no-color');
     }
   }
-
-  // arrCol = [0, 2, 6]
 
   for ( var col = 0; col < arrCol.length; col++ ) {
     for ( var row = 1; row <= 100; row += 10 ) {
@@ -141,66 +139,10 @@ function testing() {
     }
   }
 
-  score += arrRow.length * 10;
-  score += arrCol.length * 10;
-
-  displayScore(score);
-
+  displayScore(score, arrRow, arrCol);
   console.log(arr);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function clearBoard() {
-  for ( var i = 1; i <= 100; i++ ) {
-    $('#cell-' + i).removeClass('color').addClass('no-color');
-  }
-}
 
 
 
