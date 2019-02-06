@@ -69,7 +69,12 @@ table {
     background-color: transparent;
 }
 
-
+.play {
+    margin-top: 5%;
+    margin-left: 45%;
+    height: 50px;
+    width: 100px;
+}
 
 
 
