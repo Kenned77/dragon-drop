@@ -1,5 +1,11 @@
 window.onload = function() {
+  $('.main').hide();
+}
+
+play = () => {
   startGame();
+  $('.main').show();
+  $('.play').hide();
 }
 
 var tableCells = [];
@@ -20,6 +26,7 @@ var Board = function() {
     tableCells[i] = [];
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
+      // var nextColumn = $("<td>").attr( 'id', 'cell-' + this.cellId);
       var nextColumn = $("<td>" + this.cellId + "</td>").attr( 'id', 'cell-' + this.cellId);
       tableCells[i][j] = nextColumn;
       this.cellId++;
