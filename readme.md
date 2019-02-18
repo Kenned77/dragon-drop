@@ -11,7 +11,7 @@ Hosted at [elasticbeanstalk.com](http://dragon-drop.xyetrvyk25.us-west-2.elastic
 
 Download project, install, and start local server:
 ```
-git clone git@github.com:bananno/dragon-drop.git
+git clone git@github.com:Kenned77/dragon-drop.git
 cd dragon-drop
 npm install
 npm start
