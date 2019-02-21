@@ -27,7 +27,13 @@ var Board = function() {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
       // var nextColumn = $("<td>").attr( 'id', 'cell-' + this.cellId);
-      var nextColumn = $("<td>" + this.cellId + "</td>").attr( 'id', 'cell-' + this.cellId);
+      // var nextColumn = $("<td>" + this.cellId + "</td>").attr( 'id', 'cell-' + this.cellId);
+      // var nextColumn = $("<td>" + this.cellId + "</td>").attr('id', this.cellId).attr('ondrop', 'drop(event)').attr('ondragover', 'allowDrop(event)');
+      var nextColumn = $("<td>" + this.cellId + "</td>")
+        .attr('id', this.cellId)
+        .attr('class', 'no-color')
+        .attr('ondrop', 'drop(event)')
+        .attr('ondragover', 'allowDrop(event)');
       tableCells[i][j] = nextColumn;
       this.cellId++;
       nextRow.append(nextColumn);
@@ -35,6 +41,27 @@ var Board = function() {
     this.element.append(nextRow);
   }
 }
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+  console.log(ev.target.id + ' event ID');
+  place(1, parseInt(ev.target.id));
+  // place(2, 8);
+}
+
+
+
 
 let displayScore = (sc, row, col) => {
   if (row) {
@@ -48,10 +75,16 @@ let displayScore = (sc, row, col) => {
   document.getElementById('score').textContent = sc;
 }
 
-let place = () => {
-  var type, startNum, inFrame, taken
-  type = document.getElementById('type').value;
-  startNum = parseInt(document.getElementById("startNum").value);
+let place = (type, startNum) => {
+  console.log(typeof startNum);
+  // var type, startNum, inFrame, taken
+  var inFrame, taken
+  // type = document.getElementById('type').value;
+  // startNum = parseInt(document.getElementById("startNum").value);
+
+  console.log(type + ' type');
+  console.log(startNum + ' startNum');
+
   inFrame = true;
   taken = false;
 
@@ -67,14 +100,14 @@ let place = () => {
 
   if (inFrame) {
     for (var i = 0; i < pieces[type][1].length; i++) {
-      if ($('#cell-' + (startNum + pieces[type][1][i])).hasClass('color')) {
+      if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
         taken = true;
       }
     }
 
     if (!taken) {
       for (var i = 0; i < pieces[type][1].length; i++) {
-        $('#cell-' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
+        $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
       }
 
       if (startNum > 0) {
@@ -124,13 +157,13 @@ let checkAndREmove = () => {
 
   for ( var row = 0; row < arrRow.length; row++ ) {
     for ( var col = 1; col <= 10; col++ ) {
-      $('#cell-' + (arrRow[row] * 10 + col)).removeClass('color').addClass('no-color');
+      $('#' + (arrRow[row] * 10 + col)).removeClass('color').addClass('no-color');
     }
   }
 
   for ( var col = 0; col < arrCol.length; col++ ) {
     for ( var row = 1; row <= 100; row += 10 ) {
-      $('#cell-' + (arrCol[col] + row)).removeClass('color').addClass('no-color');
+      $('#' + (arrCol[col] + row)).removeClass('color').addClass('no-color');
     }
   }
 
@@ -147,6 +180,6 @@ let checkAndREmove = () => {
   }
 
   displayScore(score, arrRow, arrCol);
-  console.log(arr);
+  // console.log(arr);
 }
 

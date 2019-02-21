@@ -17,7 +17,7 @@ const dublicateGridToArr = (arr) => {
   var start = 1;
   for ( var i = 0; i < 10; i++ ) {
     for ( var j = 0; j < 10; j++ ) {
-      if ( $('#cell-' + start).hasClass('color')) {
+      if ( $('#' + start).hasClass('color')) {
         arr[i][j] = 1;
         start++;
       } else {
@@ -31,7 +31,7 @@ const dublicateGridToArr = (arr) => {
 const clearBoard = () => {
   if (confirm('are you sure?')) {
     for ( var i = 1; i <= 100; i++ ) {
-      $('#cell-' + i).removeClass('color').addClass('no-color');
+      $('#' + i).removeClass('color').addClass('no-color');
     }
 
     score = 0;
