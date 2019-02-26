@@ -4,37 +4,33 @@ window.onload = function() {
 
 play = () => {
   startGame();
+  createPieces();
   $('.main').show();
   $('.play').hide();
 }
 
-var tableCells = [];
+
 var score = 0;
 var arr = [[]];
 
 var startGame = () => {
-  gameBoard = new Board();
+  var gameBoard = new Board();
   $("#board").append(gameBoard.element);
 }
 
 var Board = function() {
   this.size = 10;
-  this.element = $("<table>");
+  this.element = $("<table>")
+    .attr('ondrop', 'drop(event)')
+    .attr('ondragover', 'allowDrop(event)');
   this.element.addClass('board');
   this.cellId = 1;
   for(var i = 0; i < this.size; i++)  {
-    tableCells[i] = [];
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
-      // var nextColumn = $("<td>").attr( 'id', 'cell-' + this.cellId);
-      // var nextColumn = $("<td>" + this.cellId + "</td>").attr( 'id', 'cell-' + this.cellId);
-      // var nextColumn = $("<td>" + this.cellId + "</td>").attr('id', this.cellId).attr('ondrop', 'drop(event)').attr('ondragover', 'allowDrop(event)');
       var nextColumn = $("<td>" + this.cellId + "</td>")
         .attr('id', this.cellId)
-        .attr('class', 'no-color')
-        .attr('ondrop', 'drop(event)')
-        .attr('ondragover', 'allowDrop(event)');
-      tableCells[i][j] = nextColumn;
+        .attr('class', 'no-color');
       this.cellId++;
       nextRow.append(nextColumn);
     }
@@ -43,50 +39,101 @@ var Board = function() {
 }
 
 
+var createPieces = () => {
+  var gamePiece1 = new Piece(3,1);
+  var gamePiece2 = new Piece(3,2);
+  var gamePiece3 = new Piece(3,3);
+  $("#piece-1").append(gamePiece1.element);
+  $("#piece-2").append(gamePiece2.element);
+  $("#piece-3").append(gamePiece3.element);
+}
+
+var Piece = function(size, id) {
+  this.size = size;
+  this.cellId = id;
+  this.element = $("<table>")
+    .attr('draggable', 'true')
+    .attr('ondragstart', 'drag(event)')
+    .addClass('test-table')
+    .attr('id', this.cellId);
+  for(var i = 0; i < this.size; i++)  {
+    var nextRow = $("<tr>");
+    for(var j = 0; j < this.size; j++) {
+      var nextColumn = $("<td>")
+        .addClass('color')
+        .attr('onmousedown', 'clickHandle(' + i + ',' + j + ')');
+      this.cellId++;
+      nextRow.append(nextColumn);
+    }
+    this.element.append(nextRow);
+  }
+}
+
+
+
+
+
+
+
+
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
+let hide;
+
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
+  hide = ev.target.id;
+  // console.log(parseInt(ev.target.id) + ' her')
 }
+
+let test = 3;
 
 function drop(ev) {
+  let startNum;
   ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-  console.log(ev.target.id + ' event ID');
-  place(1, parseInt(ev.target.id));
-  // place(2, 8);
-}
 
+  startNum = parseInt(ev.target.id)
 
+  startNum = startNum - handleRow;
+  startNum = startNum - handleCol;
 
+  // var data = ev.dataTransfer.getData("text");
 
-let displayScore = (sc, row, col) => {
-  if (row) {
-    sc += row.length * 10;
+  console.log('Start num ' + startNum);
+  place(17, startNum);
+
+  if (test >= 0) {
+    $('#piece-' + hide).html('');
+    test--;
   }
 
-  if (col) {
-    sc += col.length * 10;
+  if (test === 0) {
+    createPieces();
+    test = 3;
   }
 
-  document.getElementById('score').textContent = sc;
+  // console.log(parseInt(ev.target.id));
+
 }
+
+let handleRow, handleCol;
+
+function clickHandle(x, y) {
+  handleRow = x * 10;
+  handleCol = y;
+  console.log('stored ' + x + ', ' + y);
+}
+
 
 let place = (type, startNum) => {
-  console.log(typeof startNum);
-  // var type, startNum, inFrame, taken
   var inFrame, taken
-  // type = document.getElementById('type').value;
-  // startNum = parseInt(document.getElementById("startNum").value);
-
-  console.log(type + ' type');
-  console.log(startNum + ' startNum');
 
   inFrame = true;
   taken = false;
+
 
   if (startNum >= pieces[type][0][pieces[type][0].length - 1]) {
       inFrame = false;
@@ -123,6 +170,18 @@ let place = (type, startNum) => {
   // Create a copy of the grid based on which og the cells have a class of color
   dublicateGridToArr(arr);
   checkAndREmove();
+}
+
+let displayScore = (sc, row, col) => {
+  if (row) {
+    sc += row.length * 10;
+  }
+
+  if (col) {
+    sc += col.length * 10;
+  }
+
+  document.getElementById('score').textContent = sc;
 }
 
 let checkAndREmove = () => {
