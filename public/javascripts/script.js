@@ -127,8 +127,6 @@ function drop(ev) {
 
   // var data = ev.dataTransfer.getData("text");
 
-  console.log('Start num ' + startNum);
-  console.log('Type ' + type);
   place(type, startNum);
 
   if (test >= 0) {
@@ -147,7 +145,6 @@ let handleRow, handleCol;
 function clickHandle(x, y) {
   handleRow = x * 10;
   handleCol = y;
-  console.log('stored ' + x + ', ' + y);
 }
 
 
@@ -262,6 +259,5 @@ let checkAndREmove = () => {
   }
 
   displayScore(score, arrRow, arrCol);
-  // console.log(arr);
 }
 

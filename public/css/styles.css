@@ -2,9 +2,8 @@ body {
     background-color: #e1f0fa;
 }
 
-/*.board td {*/
 td {
-    border: 0.3px solid black;
+    border: 0.03px solid black;
     height: 30px;
     width: 30px;
 }
@@ -60,13 +59,11 @@ table {
     height: 80px;
     margin: 5px;
     padding: 5px;
-    /*border: 0.5px solid black;*/
     display:inline-block;
 }
 
 
 .color {
-    /*background-color: white;*/
     background-color: #4e1608;
 }
 
@@ -92,12 +89,7 @@ table {
     height: 30px;
     width: 35px;
 }
-/*
-#drag1 {
-    border: none;
-    height: 30px;
-    width: 30px;
-}*/
+
 
 
 
