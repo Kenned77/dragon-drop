@@ -2,6 +2,7 @@ body {
     background-color: #e1f0fa;
 }
 
+/*.board td {*/
 td {
     border: 0.3px solid black;
     height: 30px;
@@ -55,7 +56,7 @@ table {
 }
 
 .next-piece {
-    width: 100px;
+    width: 170px;
     height: 80px;
     margin: 5px;
     padding: 5px;
@@ -80,23 +81,23 @@ table {
     width: 100px;
 }
 
-.hejhej {
+.hejhej td {
     border: none;
     height: 10px;
     width: 10px;
 }
 
-.hejhejhej {
+.hejhejhej td {
     border: none;
     height: 30px;
-    width: 30px;
+    width: 35px;
 }
-
+/*
 #drag1 {
     border: none;
     height: 30px;
     width: 30px;
-}
+}*/
 
 
 

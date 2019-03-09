@@ -9,7 +9,6 @@ play = () => {
   $('.play').hide();
 }
 
-
 var score = 0;
 var arr = [[]];
 
@@ -40,53 +39,75 @@ var Board = function() {
 
 
 var createPieces = () => {
-  var gamePiece1 = new Piece(3,1);
-  var gamePiece2 = new Piece(3,2);
-  var gamePiece3 = new Piece(3,3);
+
+  var gamePiece1 = new Piece(5,1, Math.floor(Math.random() * 19));
+  var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
+  var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
+
   $("#piece-1").append(gamePiece1.element);
   $("#piece-2").append(gamePiece2.element);
   $("#piece-3").append(gamePiece3.element);
 }
 
-var Piece = function(size, id) {
+var Piece = function(size, cellId, type) {
+  let piece = pieces[type][1];
+  let newPiece = piece.map(function(num) {
+    let r = Math.floor(num/10);
+    let c = num % 10;
+    return (r * 5) + c;
+  });
+
+  console.log(piece);
+  console.log(newPiece);
+
+  let count1 = 0;
+  let count2 = 0;
+
   this.size = size;
-  this.cellId = id;
+  this.cellId = cellId;
+  this.type = type;
   this.element = $("<table>")
     .attr('draggable', 'true')
     .attr('ondragstart', 'drag(event)')
-    .addClass('test-table')
+    .attr('type', this.type)
+    .addClass('test-table hejhej')
     .attr('id', this.cellId);
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
       var nextColumn = $("<td>")
-        .addClass('color')
+      // var nextColumn = $("<td>" + count1 + "</td>")
+        // .attr('onmousedrop', 'clickHandle(' + i + ',' + j + ')');
         .attr('onmousedown', 'clickHandle(' + i + ',' + j + ')');
+        if (newPiece[count2] === count1) {
+          nextColumn.addClass('color')
+          count2++;
+        }
       this.cellId++;
       nextRow.append(nextColumn);
+      count1++;
     }
     this.element.append(nextRow);
   }
+
+  newPiece = [];
 }
-
-
-
-
-
-
-
-
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
 let hide;
+let type;
 
 function drag(ev) {
+  var togglePiece;
   ev.dataTransfer.setData("text", ev.target.id);
   hide = ev.target.id;
-  // console.log(parseInt(ev.target.id) + ' her')
+
+  type = $(ev.target).attr('type');
+
+  $(ev.target).removeClass('hejhej').addClass('hejhejhej');
 }
 
 let test = 3;
@@ -103,7 +124,8 @@ function drop(ev) {
   // var data = ev.dataTransfer.getData("text");
 
   console.log('Start num ' + startNum);
-  place(17, startNum);
+  console.log('Type ' + type);
+  place(type, startNum);
 
   if (test >= 0) {
     $('#piece-' + hide).html('');
@@ -114,9 +136,6 @@ function drop(ev) {
     createPieces();
     test = 3;
   }
-
-  // console.log(parseInt(ev.target.id));
-
 }
 
 let handleRow, handleCol;
