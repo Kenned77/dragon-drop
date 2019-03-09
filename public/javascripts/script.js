@@ -44,6 +44,11 @@ var createPieces = () => {
   var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
   var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
 
+  // var gamePiece1 = new Piece(5,1, 12);
+  // var gamePiece2 = new Piece(5,2, 12);
+  // var gamePiece3 = new Piece(5,3, 12);
+
+
   $("#piece-1").append(gamePiece1.element);
   $("#piece-2").append(gamePiece2.element);
   $("#piece-3").append(gamePiece3.element);
@@ -57,8 +62,7 @@ var Piece = function(size, cellId, type) {
     return (r * 5) + c;
   });
 
-  console.log(piece);
-  console.log(newPiece);
+  newPiece.sort(function(a, b){return a-b});
 
   let count1 = 0;
   let count2 = 0;
