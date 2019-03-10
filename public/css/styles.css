@@ -9,6 +9,7 @@ td {
 }
 
 table {
+    border-collapse: collapse;
     border: 5px solid black;
 }
 
@@ -80,6 +81,7 @@ table {
 
 .hejhej td {
     border: none;
+    /*border: 0.5px solid black;*/
     height: 10px;
     width: 10px;
 }

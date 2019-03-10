@@ -44,11 +44,6 @@ var createPieces = () => {
   var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
   var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
 
-  // var gamePiece1 = new Piece(5,1, 12);
-  // var gamePiece2 = new Piece(5,2, 12);
-  // var gamePiece3 = new Piece(5,3, 12);
-
-
   $("#piece-1").append(gamePiece1.element);
   $("#piece-2").append(gamePiece2.element);
   $("#piece-3").append(gamePiece3.element);
@@ -75,6 +70,7 @@ var Piece = function(size, cellId, type) {
     .attr('ondragstart', 'drag(event)')
     .attr('type', this.type)
     .addClass('test-table hejhej')
+    .on('mousedown', calculateCoordinates)
     .attr('id', this.cellId);
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
@@ -117,6 +113,7 @@ function drag(ev) {
 let test = 3;
 
 function drop(ev) {
+
   let startNum;
   ev.preventDefault();
 
@@ -140,11 +137,24 @@ function drop(ev) {
   }
 }
 
-let handleRow, handleCol;
+let handleRow, handleCol, coordinatRow, coordinatCol ;
 
 function clickHandle(x, y) {
   handleRow = x * 10;
   handleCol = y;
+}
+
+function calculateCoordinates(event) {
+
+  const element = $(event.target).closest('table')[0].getBoundingClientRect();
+
+  let elementLocation = [element.left, element.top];
+  let clickLocation = [event.clientX, event.clientY];
+
+  coordinatRow = clickLocation[0] - elementLocation[0];
+  coordinatCol = clickLocation[1] - elementLocation[1];
+
+  console.log(coordinatRow + ' AND ' + coordinatCol);
 }
 
 
@@ -154,8 +164,7 @@ let place = (type, startNum) => {
   inFrame = true;
   taken = false;
 
-
-  if (startNum >= pieces[type][0][pieces[type][0].length - 1]) {
+  if ( startNum >= pieces[type][0][pieces[type][0].length - 1] || startNum <= 0 ) {
       inFrame = false;
   } else {
     for ( var i = 0; i < pieces[type][0].length; i++ ) {
