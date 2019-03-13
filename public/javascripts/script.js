@@ -27,8 +27,11 @@ var Board = function() {
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
-      var nextColumn = $("<td>" + this.cellId + "</td>")
+      // var nextColumn = $("<td>" + this.cellId + "</td>")
+      var nextColumn = $("<td>")
         .attr('id', this.cellId)
+        .on('dragover', over)
+        .on('dragleave', out)
         .attr('class', 'no-color');
       this.cellId++;
       nextRow.append(nextColumn);
@@ -44,9 +47,28 @@ var createPieces = () => {
   var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
   var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
 
+
+  // var gamePiece1 = new Piece(5,1, 16);
+  // var gamePiece2 = new Piece(5,2, 17);
+  // var gamePiece3 = new Piece(5,3, 18);
+
   $("#piece-1").append(gamePiece1.element);
   $("#piece-2").append(gamePiece2.element);
   $("#piece-3").append(gamePiece3.element);
+}
+
+function over() {
+  let startNum;
+  startNum = parseInt(this.id);
+
+  startNum = startNum - coordinatRow;
+  startNum = startNum - coordinatCol;
+
+  place(type, startNum, false);
+}
+
+function out() {
+  $('td').removeClass('testingYellow')
 }
 
 var Piece = function(size, cellId, type) {
@@ -75,10 +97,7 @@ var Piece = function(size, cellId, type) {
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
-      var nextColumn = $("<td>")
-      // var nextColumn = $("<td>" + count1 + "</td>")
-        // .attr('onmousedrop', 'clickHandle(' + i + ',' + j + ')');
-        .attr('onmousedown', 'clickHandle(' + i + ',' + j + ')');
+      var nextColumn = $("<td>");
         if (newPiece[count2] === count1) {
           nextColumn.addClass('color')
           count2++;
@@ -101,7 +120,7 @@ let hide;
 let type;
 
 function drag(ev) {
-  var togglePiece;
+
   ev.dataTransfer.setData("text", ev.target.id);
   hide = ev.target.id;
 
@@ -113,18 +132,19 @@ function drag(ev) {
 let test = 3;
 
 function drop(ev) {
+  out();
 
   let startNum;
   ev.preventDefault();
 
   startNum = parseInt(ev.target.id)
 
-  startNum = startNum - handleRow;
-  startNum = startNum - handleCol;
+  startNum = startNum - coordinatRow;
+  startNum = startNum - coordinatCol;
 
   // var data = ev.dataTransfer.getData("text");
 
-  place(type, startNum);
+  place(type, startNum, true);
 
   if (test >= 0) {
     $('#piece-' + hide).html('');
@@ -139,9 +159,10 @@ function drop(ev) {
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
 
-function clickHandle(x, y) {
-  handleRow = x * 10;
-  handleCol = y;
+function convert(x, y) {
+  let newRow = Math.floor(y / 30);
+  let newCol = Math.floor(x / 30);
+  return [newRow, newCol];
 }
 
 function calculateCoordinates(event) {
@@ -151,15 +172,18 @@ function calculateCoordinates(event) {
   let elementLocation = [element.left, element.top];
   let clickLocation = [event.clientX, event.clientY];
 
-  coordinatRow = clickLocation[0] - elementLocation[0];
-  coordinatCol = clickLocation[1] - elementLocation[1];
+  coordinatCol = clickLocation[0] - elementLocation[0];
+  coordinatRow = clickLocation[1] - elementLocation[1];
 
-  console.log(coordinatRow + ' AND ' + coordinatCol);
+  coordinatRow = Math.floor(coordinatRow / 30);
+  coordinatCol = Math.floor(coordinatCol / 30);
+
 }
 
 
-let place = (type, startNum) => {
+let place = (type, startNum, isDrop) => {
   var inFrame, taken
+
 
   inFrame = true;
   taken = false;
@@ -183,12 +207,18 @@ let place = (type, startNum) => {
 
     if (!taken) {
       for (var i = 0; i < pieces[type][1].length; i++) {
-        $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
+        if (isDrop) {
+          $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
+        } else {
+          $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('testingYellow');
+        }
       }
 
       if (startNum > 0) {
-        score += pieces[type][1].length;
-        displayScore(score);
+        if (isDrop) {
+          score += pieces[type][1].length;
+          displayScore(score);
+        }
       }
     }
   }

@@ -3,7 +3,7 @@ body {
 }
 
 td {
-    border: 0.03px solid black;
+    border: 0.1px solid grey;
     height: 30px;
     width: 30px;
 }
@@ -44,7 +44,7 @@ table {
 .board {
     margin: auto;
     /*background-image: url(https://image.freepik.com/free-vector/angry-dragon-silhouette_23-2147510357.jpg);*/
-    /*background-image: url(../images/dragons_hero_Sentinel_P2.jpg);*/
+    background-image: url(../images/dragons_hero_Sentinel_P2.jpg);
     /*background-image: url(http://www.animatedimages.org/data/media/188/animated-dragon-image-0204.gif); // original image*/
     background-size: cover;
 }
@@ -81,20 +81,22 @@ table {
 
 .hejhej td {
     border: none;
+    /*border: 0.5 solid white;*/
     /*border: 0.5px solid black;*/
     height: 10px;
     width: 10px;
 }
 
 .hejhejhej td {
+    /*border: 0.5 solid white;*/
     border: none;
     height: 30px;
-    width: 35px;
+    width: 30px;
 }
 
-
-
-
+.testingYellow {
+    background-color: grey;
+}
 
 
 
