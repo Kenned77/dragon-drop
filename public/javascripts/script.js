@@ -111,14 +111,14 @@ var Piece = function(size, cellId, type) {
   newPiece = [];
 }
 
-function allowDrop(ev) {
+let allowDrop = (ev) => {
   ev.preventDefault();
 }
 
 let hide;
 let type;
 
-function drag(ev) {
+let drag = (ev) => {
 
   ev.dataTransfer.setData("text", ev.target.id);
   hide = ev.target.id;
