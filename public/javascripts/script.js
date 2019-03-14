@@ -27,8 +27,8 @@ var Board = function() {
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
-      // var nextColumn = $("<td>" + this.cellId + "</td>")
-      var nextColumn = $("<td>")
+      var nextColumn = $("<td>" + this.cellId + "</td>")
+      // var nextColumn = $("<td>")
         .attr('id', this.cellId)
         .on('dragover', over)
         .on('dragleave', out)
@@ -180,6 +180,22 @@ function calculateCoordinates(event) {
 
 }
 
+function removeTiles(direction, row, col) {
+  if (col > 10 || row > 100) {
+    return;
+  }
+
+  setTimeout(function() {
+    if (direction == 'row') {
+      $('#' + (row * 10 + col)).removeClass('color').addClass('no-color');
+      removeTiles(direction, row, col + 1);
+    } else {
+      $('#' + (row + col)).removeClass('color').addClass('no-color');
+      removeTiles(direction, row + 10, col);
+    }
+  }, 50);
+}
+
 
 let place = (type, startNum, isDrop) => {
   var inFrame, taken
@@ -228,7 +244,7 @@ let place = (type, startNum, isDrop) => {
 
   // Create a copy of the grid based on which og the cells have a class of color
   dublicateGridToArr(arr);
-  checkAndREmove();
+  checkAndRemove();
 }
 
 let displayScore = (sc, row, col) => {
@@ -243,7 +259,7 @@ let displayScore = (sc, row, col) => {
   document.getElementById('score').textContent = sc;
 }
 
-let checkAndREmove = () => {
+let checkAndRemove = () => {
   var arrRow = [];
   var arrCol = [];
 
@@ -273,17 +289,13 @@ let checkAndREmove = () => {
     }
   }
 
-  for ( var row = 0; row < arrRow.length; row++ ) {
-    for ( var col = 1; col <= 10; col++ ) {
-      $('#' + (arrRow[row] * 10 + col)).removeClass('color').addClass('no-color');
-    }
-  }
+  arrRow.forEach(row => {
+    removeTiles('row', row, 1);
+  });
 
-  for ( var col = 0; col < arrCol.length; col++ ) {
-    for ( var row = 1; row <= 100; row += 10 ) {
-      $('#' + (arrCol[col] + row)).removeClass('color').addClass('no-color');
-    }
-  }
+  arrCol.forEach(col => {
+    removeTiles('col', 1, col);
+  });
 
   for ( var row = 0; row < arrRow.length; row++ ) {
     for ( var col = 0; col < 10; col++ ) {
