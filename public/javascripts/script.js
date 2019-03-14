@@ -40,7 +40,6 @@ var Board = function() {
   }
 }
 
-
 var createPieces = () => {
 
   var gamePiece1 = new Piece(5,1, Math.floor(Math.random() * 19));
@@ -196,10 +195,8 @@ function removeTiles(direction, row, col) {
   }, 50);
 }
 
-
 let place = (type, startNum, isDrop) => {
   var inFrame, taken
-
 
   inFrame = true;
   taken = false;
