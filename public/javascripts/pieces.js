@@ -37,6 +37,7 @@ const clearBoard = () => {
     score = 0;
     displayScore(score);
     createArr(arr);
+    createPieces();
   }
 }
 

@@ -42,6 +42,10 @@ var Board = function() {
 
 var createPieces = () => {
 
+  for ( var j = 1; j <= 3; j++ ) {
+    $('#piece-' + j).html('');
+  }
+
   var gamePiece1 = new Piece(5,1, Math.floor(Math.random() * 19));
   var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
   var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
