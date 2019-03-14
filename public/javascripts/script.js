@@ -118,7 +118,7 @@ let drag = (ev) => {
   $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
 }
 
-let test = 3;
+let boxCounter = 3;
 
 let drop = (ev) => {
 
@@ -144,14 +144,14 @@ let drop = (ev) => {
 
   place(type, startNum, true);
 
-  if (test >= 0 && correct) {
+  if (boxCounter >= 0 && correct) {
     $('#piece-' + hide).html('');
-    test--;
+    boxCounter--;
   }
 
-  if (test === 0) {
+  if (boxCounter === 0) {
     createPieces();
-    test = 3;
+    boxCounter = 3;
   }
 }
 
