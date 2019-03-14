@@ -85,7 +85,7 @@ var Piece = function(size, cellId, type) {
     .attr('draggable', 'true')
     .attr('ondragstart', 'drag(event)')
     .attr('type', this.type)
-    .addClass('singlePieceTable hejhej')
+    .addClass('singlePieceTable pieceSize')
     .on('mousedown', calculateCoordinates)
     .attr('id', this.cellId);
   for(var i = 0; i < this.size; i++)  {
@@ -120,7 +120,7 @@ let drag = (ev) => {
 
   type = $(ev.target).attr('type');
 
-  $(ev.target).removeClass('hejhej').addClass('hejhejhej');
+  $(ev.target).removeClass('pieceSize').addClass('hejhejhej');
 }
 
 let test = 3;
