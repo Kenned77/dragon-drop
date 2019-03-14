@@ -13,10 +13,6 @@ table {
     border: 5px solid black;
 }
 
-.singlePieceTable {
-    border: none;
-}
-
 .title {
     text-align: center;
 }
@@ -74,6 +70,12 @@ table {
     margin-left: 45%;
     height: 50px;
     width: 100px;
+}
+
+/* Movable pieces styling */
+
+.singlePieceTable {
+    border: none;
 }
 
 .pieceSize td {
