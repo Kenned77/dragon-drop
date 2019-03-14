@@ -13,7 +13,7 @@ table {
     border: 5px solid black;
 }
 
-.test-table {
+.singlePieceTable {
     border: none;
 }
 
@@ -60,7 +60,6 @@ table {
     padding: 5px;
     display:inline-block;
 }
-
 
 .color {
     background-color: #4e1608;

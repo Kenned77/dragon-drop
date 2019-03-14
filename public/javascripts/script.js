@@ -85,7 +85,7 @@ var Piece = function(size, cellId, type) {
     .attr('draggable', 'true')
     .attr('ondragstart', 'drag(event)')
     .attr('type', this.type)
-    .addClass('test-table hejhej')
+    .addClass('singlePieceTable hejhej')
     .on('mousedown', calculateCoordinates)
     .attr('id', this.cellId);
   for(var i = 0; i < this.size; i++)  {
