@@ -121,9 +121,12 @@ let drag = (ev) => {
 let test = 3;
 
 let drop = (ev) => {
+
   removeBackgroundShadow();
 
+  let correct = true;
   let startNum;
+
   ev.preventDefault();
 
   startNum = parseInt(ev.target.id)
@@ -133,9 +136,15 @@ let drop = (ev) => {
 
   // var data = ev.dataTransfer.getData("text");
 
+  for (var i = 0; i < pieces[type][1].length; i++) {
+    if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
+      correct = false;
+    }
+  }
+
   place(type, startNum, true);
 
-  if (test >= 0) {
+  if (test >= 0 && correct) {
     $('#piece-' + hide).html('');
     test--;
   }
