@@ -31,7 +31,7 @@ var Board = function() {
       // var nextColumn = $("<td>")
         .attr('id', this.cellId)
         .on('dragover', over)
-        .on('dragleave', out)
+        .on('dragleave', removeBackgroundShadow)
         .attr('class', 'no-color');
       this.cellId++;
       nextRow.append(nextColumn);
@@ -66,8 +66,8 @@ function over() {
   place(type, startNum, false);
 }
 
-function out() {
-  $('td').removeClass('testingYellow')
+function removeBackgroundShadow() {
+  $('td').removeClass('backgroundShadow')
 }
 
 var Piece = function(size, cellId, type) {
@@ -131,7 +131,7 @@ let drag = (ev) => {
 let test = 3;
 
 let drop = (ev) => {
-  out();
+  removeBackgroundShadow();
 
   let startNum;
   ev.preventDefault();
@@ -223,7 +223,7 @@ let place = (type, startNum, isDrop) => {
         if (isDrop) {
           $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
         } else {
-          $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('testingYellow');
+          $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('backgroundShadow');
         }
       }
 
