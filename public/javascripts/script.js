@@ -46,11 +46,6 @@ var createPieces = () => {
   var gamePiece2 = new Piece(5,2, Math.floor(Math.random() * 19));
   var gamePiece3 = new Piece(5,3, Math.floor(Math.random() * 19));
 
-
-  // var gamePiece1 = new Piece(5,1, 16);
-  // var gamePiece2 = new Piece(5,2, 17);
-  // var gamePiece3 = new Piece(5,3, 18);
-
   $("#piece-1").append(gamePiece1.element);
   $("#piece-2").append(gamePiece2.element);
   $("#piece-3").append(gamePiece3.element);
