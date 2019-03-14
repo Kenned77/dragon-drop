@@ -120,7 +120,7 @@ let drag = (ev) => {
 
   type = $(ev.target).attr('type');
 
-  $(ev.target).removeClass('pieceSize').addClass('hejhejhej');
+  $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
 }
 
 let test = 3;
