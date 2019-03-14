@@ -30,7 +30,7 @@ var Board = function() {
       // var nextColumn = $("<td>" + this.cellId + "</td>")
       var nextColumn = $("<td>")
         .attr('id', this.cellId)
-        .on('dragover', over)
+        .on('dragover', captureIdWhenDraggedOver)
         .on('dragleave', removeBackgroundShadow)
         .attr('class', 'no-color');
       this.cellId++;
@@ -48,13 +48,11 @@ var createPieces = () => {
   }
 }
 
-function over() {
+function captureIdWhenDraggedOver() {
   let startNum;
   startNum = parseInt(this.id);
-
   startNum = startNum - coordinatRow;
   startNum = startNum - coordinatCol;
-
   place(type, startNum, false);
 }
 
@@ -157,7 +155,6 @@ let convert = (x, y) => {
 }
 
 let calculateCoordinates = (event) => {
-
   const element = $(event.target).closest('table')[0].getBoundingClientRect();
 
   let elementLocation = [element.left, element.top];
@@ -168,7 +165,6 @@ let calculateCoordinates = (event) => {
 
   coordinatRow = Math.floor(coordinatRow / 30);
   coordinatCol = Math.floor(coordinatCol / 30);
-
 }
 
 let removeTiles = (direction, row, col) => {
