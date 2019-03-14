@@ -130,7 +130,7 @@ function drag(ev) {
 
 let test = 3;
 
-function drop(ev) {
+let drop = (ev) => {
   out();
 
   let startNum;
@@ -158,13 +158,13 @@ function drop(ev) {
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
 
-function convert(x, y) {
+let convert = (x, y) => {
   let newRow = Math.floor(y / 30);
   let newCol = Math.floor(x / 30);
   return [newRow, newCol];
 }
 
-function calculateCoordinates(event) {
+let calculateCoordinates = (event) => {
 
   const element = $(event.target).closest('table')[0].getBoundingClientRect();
 
@@ -179,7 +179,7 @@ function calculateCoordinates(event) {
 
 }
 
-function removeTiles(direction, row, col) {
+let removeTiles = (direction, row, col) => {
   if (col > 10 || row > 100) {
     return;
   }
