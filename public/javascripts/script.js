@@ -5,6 +5,7 @@ window.onload = function() {
 play = () => {
   startGame();
   createPieces();
+  checkingAnyMoveLeft();
   $('.main').show();
   $('.play').hide();
 }
@@ -27,12 +28,12 @@ var Board = function() {
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
-      // var nextColumn = $("<td>" + this.cellId + "</td>")
-      var nextColumn = $("<td>")
+      var nextColumn = $("<td>" + this.cellId + "</td>")
+      // var nextColumn = $("<td>")
         .attr('id', this.cellId)
         .on('dragover', captureIdWhenDraggedOver)
         .on('dragleave', removeBackgroundShadow)
-        .attr('class', 'no-color');
+        .addClass('no-color');
       this.cellId++;
       nextRow.append(nextColumn);
     }
@@ -45,6 +46,7 @@ var createPieces = () => {
     $('#piece-' + i).html('');
     let piece = new Piece(5,i, Math.floor(Math.random() * 19));
     $('#piece-' + i).append(piece.element);
+    // console.log(piece);
   }
 }
 
@@ -57,7 +59,7 @@ function captureIdWhenDraggedOver() {
 }
 
 function removeBackgroundShadow() {
-  $('td').removeClass('backgroundShadow')
+  $('td').removeClass('backgroundShadow');
 }
 
 var Piece = function(size, cellId, type) {
@@ -136,14 +138,6 @@ let drop = (ev) => {
 
   // var data = ev.dataTransfer.getData("text");
 
-  for (var i = 0; i < pieces[type][1].length; i++) {
-    if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
-      correct = false;
-    }
-  }
-
-  place(type, startNum, true);
-
   if (boxCounter >= 0 && correct) {
     $('#piece-' + hide).html('');
     boxCounter--;
@@ -152,7 +146,33 @@ let drop = (ev) => {
   if (boxCounter === 0) {
     createPieces();
     boxCounter = 3;
+    checkingAnyMoveLeft();
   }
+
+  place(type, startNum, true);
+  checkingAnyMoveLeft();
+}
+
+let checkingAnyMoveLeft = () => {
+
+  let moveLeftList = [];
+
+  $('.board').find('td').each(function() {
+    if ($(this).hasClass('no-color')) {
+      moveLeftList[moveLeftList.length] = $(this).attr('id');
+    }
+  })
+
+  console.log(moveLeftList);
+
+  var gameOver1 = $('#piece-1').children().attr('type');
+  var gameOver2 = $('#piece-2').children().attr('type');
+  var gameOver3 = $('#piece-3').children().attr('type');
+
+  console.log(gameOver1);
+  console.log(gameOver2);
+  console.log(gameOver3);
+
 }
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
@@ -220,7 +240,7 @@ let place = (type, startNum, isDrop) => {
         if (isDrop) {
           $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
         } else {
-          $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('backgroundShadow');
+          $('#' + (startNum + pieces[type][1][i])).addClass('backgroundShadow');
         }
       }
 
