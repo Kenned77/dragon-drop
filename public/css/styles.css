@@ -1,16 +1,31 @@
+
 body {
-    background-color: #e1f0fa;
+    font-family: sans-serif;
+    background-color: #315481;
+    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-attachment: fixed;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 0;
+    margin: 0;
+
+    font-size: 24px;
 }
 
 td {
-    border: 0.1px solid grey;
+    border: none;
     height: 30px;
     width: 30px;
 }
 
 table {
     border-collapse: collapse;
-    border: 5px solid black;
+    border: 5px solid #1e3450;
 }
 
 .title {
@@ -32,15 +47,18 @@ table {
 }
 
 .current-score {
-    border: 0.1px solid black;
     text-align:left;
-    padding: 5px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    font-size: 30px;
+    color: #95a5a6;
 }
 
 .board {
     margin: auto;
-    background-image: url(../images/dragons_hero_Sentinel_P2.jpg);
-    background-size: cover;
+    background: url(../images/dragon.png);
+    background-repeat: no-repeat;
+    background-size: 330px 330px;
 }
 
 .next-pieces {
@@ -50,15 +68,20 @@ table {
 }
 
 .next-piece {
+    display:inline-block;
     width: 170px;
     height: 80px;
     margin: 5px;
     padding: 5px;
-    display:inline-block;
+}
+
+.singlePieceTable {
+    border: none;
+    display: inline-block;
 }
 
 .color {
-    background-color: #4e1608;
+    background-color: #1e3450;
 }
 
 .no-color {
@@ -73,10 +96,6 @@ table {
 }
 
 /* Movable pieces styling */
-
-.singlePieceTable {
-    border: none;
-}
 
 .pieceSize td {
     border: none;
@@ -93,12 +112,4 @@ table {
 .backgroundShadow {
     background-color: grey;
 }
-
-
-
-
-
-
-
-
 
