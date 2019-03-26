@@ -105,7 +105,7 @@ let Piece = function(size, cellId, type) {
     .attr('type', this.type)
     .addClass('singlePieceTable pieceSize')
     .on('mousedown', calculateCoordinates)
-    .attr('id', this.cellId);
+    .attr('id', 'tableId-' + this.cellId);
   for(var i = 0; i < this.size; i++)  {
     var nextRow = $("<tr>");
     for(var j = 0; j < this.size; j++) {
@@ -134,7 +134,7 @@ let type;
 let drag = (ev) => {
 
   ev.dataTransfer.setData("text", ev.target.id);
-  hide = ev.target.id;
+  hide = ev.target.id.slice(8);
 
   type = $(ev.target).attr('type');
 
@@ -179,7 +179,12 @@ let drop = (ev) => {
   }
 
   place(type, startNum, true);
+
   checkingAnyMoveLeft();
+
+  for ( let i = 1; i <= 3; i++ ) {
+    $('#tableId-' + i).removeClass('pieceSizeDraged').addClass('pieceSize');
+  }
 }
 
 let checkingAnyMoveLeft = () => {
