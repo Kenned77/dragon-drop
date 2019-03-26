@@ -5,7 +5,7 @@ A tile-matching game.
 
 ## View site
 
-Hosted at [elasticbeanstalk.com](http://dragon-drop.xyetrvyk25.us-west-2.elasticbeanstalk.com)
+Hosted at https://dragon-drop-puzzle.herokuapp.com/
 
 ## Run locally
 
