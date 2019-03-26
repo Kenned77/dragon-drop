@@ -46,7 +46,6 @@ var createPieces = () => {
     $('#piece-' + i).html('');
     let piece = new Piece(5,i, Math.floor(Math.random() * 19));
     $('#piece-' + i).append(piece.element);
-    // console.log(piece);
   }
 }
 
@@ -60,6 +59,28 @@ function captureIdWhenDraggedOver() {
 
 function removeBackgroundShadow() {
   $('td').removeClass('backgroundShadow');
+}
+
+function isItemInArray(array, item) {
+  return array.indexOf(item) >= 0;
+}
+
+function getLastItemInArray(array) {
+  return array[array.length - 1];
+}
+
+function pieceCanFit(type, startNum) {
+  if (isItemInArray(pieces[type][0], startNum)
+      || startNum > getLastItemInArray(pieces[type][0])) {
+    return false;
+  }
+
+  for (var i = 0; i < pieces[type][1].length; i++) {
+    if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
+      return false;
+    }
+  }
+  return true;
 }
 
 var Piece = function(size, cellId, type) {
@@ -138,6 +159,14 @@ let drop = (ev) => {
 
   // var data = ev.dataTransfer.getData("text");
 
+
+  // Check if move is allowed
+  for (var i = 0; i < pieces[type][1].length; i++) {
+    if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
+      correct = false;
+    }
+  }
+
   if (boxCounter >= 0 && correct) {
     $('#piece-' + hide).html('');
     boxCounter--;
@@ -154,25 +183,35 @@ let drop = (ev) => {
 }
 
 let checkingAnyMoveLeft = () => {
-
+  var pieceType = [];
   let moveLeftList = [];
+  let canMove = false;
+
+  for ( let i = 1; i <= 3; i++ ) {
+    pieceType.push($('#piece-' + i).children().attr('type')); // Create list of the piece types to check for
+  }
 
   $('.board').find('td').each(function() {
     if ($(this).hasClass('no-color')) {
-      moveLeftList[moveLeftList.length] = $(this).attr('id');
+      moveLeftList[moveLeftList.length] = parseInt($(this).attr('id')); // create list of start numbers to check pieces against
     }
-  })
+  });
 
-  console.log(moveLeftList);
+  pieceType.forEach(function(type) {
+    if (type != undefined) {
+      for ( let i = 0; i < moveLeftList.length; i++ ) {
+        if (pieceCanFit(type, moveLeftList[i])) {
+          canMove = true;
+          return;
+        }
+      }
+    }
+  });
 
-  var gameOver1 = $('#piece-1').children().attr('type');
-  var gameOver2 = $('#piece-2').children().attr('type');
-  var gameOver3 = $('#piece-3').children().attr('type');
-
-  console.log(gameOver1);
-  console.log(gameOver2);
-  console.log(gameOver3);
-
+  if (!canMove) {
+    displayScore(score);
+    alert("Game Over and all you got was " + score + ".");
+  }
 }
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
@@ -229,13 +268,7 @@ let place = (type, startNum, isDrop) => {
   }
 
   if (inFrame) {
-    for (var i = 0; i < pieces[type][1].length; i++) {
-      if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
-        taken = true;
-      }
-    }
-
-    if (!taken) {
+    if (pieceCanFit(type, startNum)) {
       for (var i = 0; i < pieces[type][1].length; i++) {
         if (isDrop) {
           $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
