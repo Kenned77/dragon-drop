@@ -2,7 +2,7 @@ window.onload = function() {
   $('.main').hide();
 }
 
-play = () => {
+let play = () => {
   startGame();
   createPieces();
   checkingAnyMoveLeft();
@@ -10,10 +10,10 @@ play = () => {
   $('.play').hide();
 }
 
-var score = 0;
-var arr = [[]];
+let score = 0;
+let arr = [[]];
 
-var startGame = () => {
+let startGame = () => {
   var gameBoard = new Board();
   $("#board").append(gameBoard.element);
 }
@@ -41,7 +41,7 @@ var Board = function() {
   }
 }
 
-var createPieces = () => {
+let createPieces = () => {
   for ( var i = 1; i <= 3; i++ ) {
     $('#piece-' + i).html('');
     let piece = new Piece(5,i, Math.floor(Math.random() * 19));
@@ -57,19 +57,19 @@ function captureIdWhenDraggedOver() {
   place(type, startNum, false);
 }
 
-function removeBackgroundShadow() {
+let removeBackgroundShadow = () => {
   $('td').removeClass('backgroundShadow');
 }
 
-function isItemInArray(array, item) {
+let isItemInArray = (array, item) => {
   return array.indexOf(item) >= 0;
 }
 
-function getLastItemInArray(array) {
+let getLastItemInArray = (array) => {
   return array[array.length - 1];
 }
 
-function pieceCanFit(type, startNum) {
+let pieceCanFit = (type, startNum) => {
   if (isItemInArray(pieces[type][0], startNum)
       || startNum > getLastItemInArray(pieces[type][0])) {
     return false;
@@ -83,7 +83,7 @@ function pieceCanFit(type, startNum) {
   return true;
 }
 
-var Piece = function(size, cellId, type) {
+let Piece = function(size, cellId, type) {
   let piece = pieces[type][1];
   let newPiece = piece.map(function(num) {
     let r = Math.floor(num/10);
