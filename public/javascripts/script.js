@@ -8,6 +8,7 @@ let play = () => {
   checkingAnyMoveLeft();
   $('.main').show();
   $('.play').hide();
+  shouldStartNewGameButtonHide(true);
 }
 
 let score = 0;
@@ -139,6 +140,7 @@ let drag = (ev) => {
   type = $(ev.target).attr('type');
 
   $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
+  shouldStartNewGameButtonHide(true);
 }
 
 let boxCounter = 3;
@@ -220,6 +222,14 @@ let checkingAnyMoveLeft = () => {
   }
 }
 
+const shouldStartNewGameButtonHide = (val) => {
+  if (val) {
+    $('.startNewGameButton').hide();
+  } else {
+    $('.startNewGameButton').show();
+  }
+}
+
 const endGameAndDisplayFinalScore = () => {
   let msg = '';
 
@@ -232,10 +242,16 @@ const endGameAndDisplayFinalScore = () => {
   }
 
   setTimeout(function(){
-    alert(msg);
+    var r = confirm(msg + "\nYou wanna try again?");
+    if (r == true) {
+      startNewGame();
+    } else {
+      shouldStartNewGameButtonHide(false);
+      alert("Have a great day!");
+    }
   }, 1000);
 
-  clearBoard();
+
 }
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;

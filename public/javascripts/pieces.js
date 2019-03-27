@@ -28,17 +28,16 @@ const dublicateGridToArr = (arr) => {
   }
 }
 
-const clearBoard = () => {
-  if (confirm('are you sure?')) {
-    for ( var i = 1; i <= 100; i++ ) {
-      $('#' + i).removeClass('color').addClass('no-color');
-    }
-
-    score = 0;
-    displayScore(score);
-    createArr(arr);
-    createPieces();
+const startNewGame = () => {
+  for ( var i = 1; i <= 100; i++ ) {
+    $('#' + i).removeClass('color').addClass('no-color');
   }
+
+  score = 0;
+  displayScore(score);
+  createArr(arr);
+  createPieces();
+  shouldStartNewGameButtonHide(true);
 }
 
 const pieces = [ // index 0 legal move, index 1 the piece type
