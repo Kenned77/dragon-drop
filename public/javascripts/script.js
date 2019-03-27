@@ -215,8 +215,27 @@ let checkingAnyMoveLeft = () => {
 
   if (!canMove) {
     displayScore(score);
-    alert("Game Over and all you got was " + score + ".");
+    checkAndRemove();
+    endGameAndDisplayFinalScore();
   }
+}
+
+const endGameAndDisplayFinalScore = () => {
+  let msg = '';
+
+  if (score <= 100) {
+    msg = "Final score is " + score + ". You can do better!";
+  } else if (score > 100 || score < 200) {
+    msg = "Final score is " + score + ". At least you got more than 100, but you can still do better";
+  } else if (score >= 200) {
+    msg = "Final score is " + score + ". Well done!";
+  }
+
+  setTimeout(function(){
+    alert(msg);
+  }, 1000);
+
+  clearBoard();
 }
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
