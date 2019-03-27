@@ -59,6 +59,7 @@ table {
     background: url(../images/dragon.png);
     background-repeat: no-repeat;
     background-size: 330px 330px;
+    background-color: rgba(250, 250, 250, 0.1);
 }
 
 .next-pieces {
