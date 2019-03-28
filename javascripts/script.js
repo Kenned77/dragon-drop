@@ -42,14 +42,6 @@ let removeBackgroundShadow = () => {
   $('td').removeClass('backgroundShadow');
 }
 
-let isItemInArray = (array, item) => {
-  return array.indexOf(item) >= 0;
-}
-
-let getLastItemInArray = (array) => {
-  return array[array.length - 1];
-}
-
 let pieceCanFit = (type, startNum) => {
   if (isItemInArray(pieces[type][0], startNum)
       || startNum > getLastItemInArray(pieces[type][0])) {
