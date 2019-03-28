@@ -264,3 +264,41 @@ let checkAndRemove = () => {
   displayScore(score, arrRow, arrCol);
 }
 
+function createArr(arr) {
+  for (let i = 0; i < 10; i++) {
+    arr[i] = [];
+    for (let j = 0; j < 10; j++) {
+      arr[i][j] = null;
+    }
+  }
+
+  return arr;
+}
+
+function dublicateGridToArr(arr) {
+  let tileNumber = 1;
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      if ($('#' + tileNumber).hasClass('color')) {
+        arr[i][j] = 1;
+      } else {
+        arr[i][j] = 0;
+      }
+      tileNumber++;
+    }
+  }
+}
+
+function restartGameAfterLoss() {
+  for (let i = 1; i <= 100; i++) {
+    $('#' + i).removeClass('color').addClass('no-color');
+  }
+
+  score = 0;
+  displayScore(score);
+  createArr(arr);
+  createPieces();
+  shouldStartNewGameButtonHide(true);
+}
+
+
