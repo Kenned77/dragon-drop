@@ -2,7 +2,7 @@
 var Board = function() {
   this.size = 10;
   this.element = $("<table>")
-    .attr('ondrop', 'drop(event)')
+    .attr('ondrop', 'dropPieceOnBoard(event)')
     .attr('ondragover', 'allowDrop(event)');
   this.element.addClass('board');
   this.cellId = 1;
@@ -35,7 +35,7 @@ function captureIdWhenDraggedOver() {
   startNum = parseInt(this.id);
   startNum = startNum - coordinatRow;
   startNum = startNum - coordinatCol;
-  place(type, startNum, false);
+  placePieceOnBoard(type, startNum, false);
 }
 
 let removeBackgroundShadow = () => {

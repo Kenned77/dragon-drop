@@ -4,7 +4,7 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function place(type, startNum, isDrop) {
+function placePieceOnBoard(type, startNum, isDrop) {
   var inFrame, taken
 
   inFrame = true;
@@ -47,7 +47,7 @@ function place(type, startNum, isDrop) {
   checkAndRemove();
 }
 
-function drop(ev) {
+function dropPieceOnBoard(ev) {
   removeBackgroundShadow();
 
   let correct = true;
@@ -77,7 +77,7 @@ function drop(ev) {
     checkingAnyMoveLeft();
   }
 
-  place(type, startNum, true);
+  placePieceOnBoard(type, startNum, true);
 
   checkingAnyMoveLeft();
 
