@@ -1,23 +1,3 @@
-window.onload = function() {
-  $('.main').hide();
-}
-
-let play = () => {
-  startGame();
-  createPieces();
-  checkingAnyMoveLeft();
-  $('.main').show();
-  $('.play').hide();
-  shouldStartNewGameButtonHide(true);
-}
-
-let score = 0;
-let arr = [[]];
-
-let startGame = () => {
-  var gameBoard = new Board();
-  $("#board").append(gameBoard.element);
-}
 
 var Board = function() {
   this.size = 10;
