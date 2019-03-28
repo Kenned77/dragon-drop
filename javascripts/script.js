@@ -74,7 +74,7 @@ let Piece = function(size, cellId, type) {
   this.type = type;
   this.element = $("<table>")
     .attr('draggable', 'true')
-    .attr('ondragstart', 'drag(event)')
+    .attr('ondragstart', 'startDragingPiece(event)')
     .attr('type', this.type)
     .addClass('singlePieceTable pieceSize')
     .on('mousedown', calculateCoordinates)
@@ -95,20 +95,6 @@ let Piece = function(size, cellId, type) {
   }
 
   newPiece = [];
-}
-
-let hide;
-let type;
-
-let drag = (ev) => {
-
-  ev.dataTransfer.setData("text", ev.target.id);
-  hide = ev.target.id.slice(8);
-
-  type = $(ev.target).attr('type');
-
-  $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
-  shouldStartNewGameButtonHide(true);
 }
 
 let checkingAnyMoveLeft = () => {

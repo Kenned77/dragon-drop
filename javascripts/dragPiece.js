@@ -1,7 +1,19 @@
 let boxCounter = 3;
+let hide;
+let type;
 
 function allowDrop(ev) {
   ev.preventDefault();
+}
+
+function startDragingPiece(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  hide = ev.target.id.slice(8);
+
+  type = $(ev.target).attr('type');
+
+  $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
+  shouldStartNewGameButtonHide(true);
 }
 
 function placePieceOnBoard(type, startNum, isDrop) {
