@@ -224,7 +224,7 @@ const endGameAndDisplayFinalScore = () => {
   setTimeout(function(){
     var r = confirm(msg + "\nYou wanna try again?");
     if (r == true) {
-      startNewGame();
+      restartGameAfterLoss();
     } else {
       shouldStartNewGameButtonHide(false);
       alert("Have a great day!");

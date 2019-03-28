@@ -24,7 +24,7 @@ function dublicateGridToArr(arr) {
   }
 }
 
-function startNewGame() {
+function restartGameAfterLoss() {
   for (let i = 1; i <= 100; i++) {
     $('#' + i).removeClass('color').addClass('no-color');
   }
