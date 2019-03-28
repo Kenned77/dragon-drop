@@ -1,11 +1,8 @@
 
-
-// Creating an array to replicate the board to v
-
-const createArr = (arr) => {
-  for ( var i = 0; i < 10; i++ ) {
+function createArr(arr) {
+  for (let i = 0; i < 10; i++) {
     arr[i] = [];
-    for ( var j = 0; j < 10; j++ ) {
+    for (let j = 0; j < 10; j++) {
       arr[i][j] = null;
     }
   }
@@ -13,23 +10,22 @@ const createArr = (arr) => {
   return arr;
 }
 
-const dublicateGridToArr = (arr) => {
-  var start = 1;
-  for ( var i = 0; i < 10; i++ ) {
-    for ( var j = 0; j < 10; j++ ) {
-      if ( $('#' + start).hasClass('color')) {
+function dublicateGridToArr(arr) {
+  let tileNumber = 1;
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      if ($('#' + tileNumber).hasClass('color')) {
         arr[i][j] = 1;
-        start++;
       } else {
         arr[i][j] = 0;
-        start++;
       }
+      tileNumber++;
     }
   }
 }
 
-const startNewGame = () => {
-  for ( var i = 1; i <= 100; i++ ) {
+function startNewGame() {
+  for (let i = 1; i <= 100; i++) {
     $('#' + i).removeClass('color').addClass('no-color');
   }
 
