@@ -163,8 +163,8 @@ let checkAndRemove = () => {
     }
   }
 
-  for ( var col = 0; col < arrCol.length; col++ ) {
-    for ( var row = 0; row < 10; row++ ) {
+  for (let col = 0; col < arrCol.length; col++) {
+    for (let row = 0; row < 10; row++) {
       boardArray[row][arrCol[col]] = 0;
     }
   }
