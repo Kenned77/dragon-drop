@@ -40,3 +40,10 @@ class Piece {
     }
   }
 }
+
+function getThreeNextPieces() {
+  for (let i = 1; i <= 3; i++ ) {
+    const piece = new Piece(5, i, getRandomNumber(19));
+    $('#piece-' + i).html(piece.element);
+  }
+}

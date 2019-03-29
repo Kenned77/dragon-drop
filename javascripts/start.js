@@ -8,11 +8,11 @@ $(document).ready(() => {
 
 function play() {
   startGame();
-  createPieces();
+  getThreeNextPieces();
   checkingAnyMoveLeft();
   $('.main').show();
   $('.play').hide();
-  shouldStartNewGameButtonHide(true);
+  toggleStartNewGameButton(true);
 }
 
 function startGame() {

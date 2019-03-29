@@ -13,7 +13,7 @@ function startDragingPiece(ev) {
   type = $(ev.target).attr('type');
 
   $(ev.target).removeClass('pieceSize').addClass('pieceSizeDraged');
-  shouldStartNewGameButtonHide(true);
+  toggleStartNewGameButton(true);
 }
 
 function placePieceOnBoard(type, startNum, isDrop) {
@@ -84,7 +84,7 @@ function dropPieceOnBoard(ev) {
   }
 
   if (boxCounter === 0) {
-    createPieces();
+    getThreeNextPieces();
     boxCounter = 3;
     checkingAnyMoveLeft();
   }

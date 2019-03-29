@@ -22,14 +22,6 @@ var Board = function() {
   }
 }
 
-let createPieces = () => {
-  for ( var i = 1; i <= 3; i++ ) {
-    $('#piece-' + i).html('');
-    let piece = new Piece(5,i, Math.floor(Math.random() * 19));
-    $('#piece-' + i).append(piece.element);
-  }
-}
-
 function captureIdWhenDraggedOver() {
   let startNum;
   startNum = parseInt(this.id);
@@ -89,14 +81,6 @@ let checkingAnyMoveLeft = () => {
   }
 }
 
-const shouldStartNewGameButtonHide = (val) => {
-  if (val) {
-    $('.startNewGameButton').hide();
-  } else {
-    $('.startNewGameButton').show();
-  }
-}
-
 const endGameAndDisplayFinalScore = () => {
   let msg = '';
 
@@ -113,7 +97,7 @@ const endGameAndDisplayFinalScore = () => {
     if (r == true) {
       restartGameAfterLoss();
     } else {
-      shouldStartNewGameButtonHide(false);
+      toggleStartNewGameButton(false);
       alert("Have a great day!");
     }
   }, 1000);
@@ -256,8 +240,8 @@ function restartGameAfterLoss() {
   score = 0;
   displayScore(score);
   createArr(arr);
-  createPieces();
-  shouldStartNewGameButtonHide(true);
+  getThreeNextPieces();
+  toggleStartNewGameButton(true);
 }
 
 
