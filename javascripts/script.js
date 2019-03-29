@@ -171,21 +171,3 @@ let checkAndRemove = () => {
 
   displayScore(score, arrRow, arrCol);
 }
-
-function dublicateGridToArr(arr) {
-  let tileNumber = 1;
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
-      if ($('#' + tileNumber).hasClass('color')) {
-        boardArray[i][j] = 1;
-      } else {
-        boardArray[i][j] = 0;
-      }
-      tileNumber++;
-    }
-  }
-}
-
-
-
-

@@ -51,11 +51,8 @@ function placePieceOnBoard(type, startNum, isDrop) {
     }
   }
 
-  // Create empty 10 * 10 empty array
-  createBoardArray();
-
   // Create a copy of the grid based on which og the cells have a class of color
-  dublicateGridToArr(boardArray);
+  dublicateGridToArr();
   checkAndRemove();
 }
 

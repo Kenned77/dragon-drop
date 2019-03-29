@@ -17,7 +17,8 @@ function play() {
 
 function startGame() {
   var gameBoard = new Board();
-  $("#board").append(gameBoard.element);
+  $('#board').append(gameBoard.element);
+  createBoardArray();
 }
 
 function restartGameAfterLoss() {
@@ -31,10 +32,21 @@ function restartGameAfterLoss() {
 
 function createBoardArray() {
   boardArray = [];
-  for (let i = 0; i < 10; i++) {
-    boardArray[i] = [];
-    for (let j = 0; j < 10; j++) {
-      boardArray[i][j] = null;
+  for (let row = 0; row < 10; row++) {
+    boardArray[row] = [];
+  }
+}
+
+function dublicateGridToArr() {
+  let tileNumber = 1;
+  for (let row = 0; row < 10; row++) {
+    for (let col = 0; col < 10; col++) {
+      if ($('#' + tileNumber).hasClass('color')) {
+        boardArray[row][col] = 1;
+      } else {
+        boardArray[row][col] = 0;
+      }
+      tileNumber++;
     }
   }
 }
