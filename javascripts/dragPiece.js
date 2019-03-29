@@ -45,7 +45,7 @@ function placePieceOnBoard(type, startNum, isDrop) {
       if (startNum > 0) {
         if (isDrop) {
           score += pieces[type][1].length;
-          displayScore();
+          updateScore();
         }
       }
     }
