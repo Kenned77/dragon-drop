@@ -1,10 +1,11 @@
+
 function pieceCanFit(type, startNum) {
   if (isItemInArray(pieces[type][0], startNum)
       || startNum > getLastItemInArray(pieces[type][0])) {
     return false;
   }
 
-  for (var i = 0; i < pieces[type][1].length; i++) {
+  for (let i = 0; i < pieces[type][1].length; i++) {
     if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
       return false;
     }
@@ -13,11 +14,11 @@ function pieceCanFit(type, startNum) {
 }
 
 function checkingAnyMoveLeft() {
-  var pieceType = [];
+  const pieceType = [];
   let moveLeftList = [];
   let canMove = false;
 
-  for ( let i = 1; i <= 3; i++ ) {
+  for (let i = 1; i <= 3; i++) {
     pieceType.push($('#piece-' + i).children().attr('type')); // Create list of the piece types to check for
   }
 
@@ -56,20 +57,16 @@ function endGameAndDisplayFinalScore() {
     msg = "Final score is " + score + ". Well done!";
   }
 
-  setTimeout(function(){
-    var r = confirm(msg + "\nYou wanna try again?");
-    if (r == true) {
+  setTimeout(() => {
+    const response = confirm(msg + "\nYou wanna try again?");
+    if (response == true) {
       restartGameAfterLoss();
     } else {
       toggleStartNewGameButton(false);
       alert("Have a great day!");
     }
-  }, 1000);
-
-
+  }, 500);
 }
-
-let handleRow, handleCol, coordinatRow, coordinatCol ;
 
 function convert(x, y) {
   let newRow = Math.floor(y / 30);
@@ -119,12 +116,12 @@ function updateScore(row, col) {
 }
 
 function checkAndRemove() {
-  var arrRow = [];
-  var arrCol = [];
+  const arrRow = [];
+  const arrCol = [];
 
-  for (var row = 0; row < 10; row++) {
-    var count = 1;
-    for (var col = 0; col < 10; col++) {
+  for (let row = 0; row < 10; row++) {
+    let count = 1;
+    for (let col = 0; col < 10; col++) {
       if (boardArray[row][col] === 1) {
         count++
       }
@@ -135,9 +132,9 @@ function checkAndRemove() {
     }
   }
 
-  for (var col = 0; col < 10; col++) {
-    var count = 1;
-    for (var row = 0; row < 10; row++) {
+  for (let col = 0; col < 10; col++) {
+    let count = 1;
+    for (let row = 0; row < 10; row++) {
       if (boardArray[row][col] === 1) {
         count++;
       }

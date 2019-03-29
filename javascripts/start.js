@@ -1,6 +1,7 @@
 
 let score = 0;
 let boardArray;
+let coordinatRow, coordinatCol;
 
 $(document).ready(() => {
   $('.main').hide();
@@ -16,7 +17,7 @@ function play() {
 }
 
 function startGame() {
-  var gameBoard = new Board();
+  const gameBoard = new Board();
   $('#board').append(gameBoard.element);
   createBoardArray();
 }

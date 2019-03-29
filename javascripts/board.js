@@ -7,7 +7,7 @@ class Board {
       .attr('ondragover', 'allowDrop(event)')
       .addClass('board');
     for (let row = 0; row < this.size; row++)  {
-      var nextRow = $('<tr>').appendTo(this.element);
+      const nextRow = $('<tr>').appendTo(this.element);
       for(let col = 0; col < this.size; col++) {
         const cellId = row * this.size + col + 1;
         $('<td>')

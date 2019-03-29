@@ -17,15 +17,12 @@ function startDragingPiece(ev) {
 }
 
 function placePieceOnBoard(type, startNum, isDrop) {
-  var inFrame, taken
+  let inFrame = true;
 
-  inFrame = true;
-  taken = false;
-
-  if ( startNum >= pieces[type][0][pieces[type][0].length - 1] || startNum <= 0 ) {
+  if (startNum >= pieces[type][0][pieces[type][0].length - 1] || startNum <= 0) {
       inFrame = false;
   } else {
-    for ( var i = 0; i < pieces[type][0].length; i++ ) {
+    for (let i = 0; i < pieces[type][0].length; i++) {
       if (startNum === pieces[type][0][i]) {
         inFrame = false;
       }
@@ -34,7 +31,7 @@ function placePieceOnBoard(type, startNum, isDrop) {
 
   if (inFrame) {
     if (pieceCanFit(type, startNum)) {
-      for (var i = 0; i < pieces[type][1].length; i++) {
+      for (let i = 0; i < pieces[type][1].length; i++) {
         if (isDrop) {
           $('#' + (startNum + pieces[type][1][i])).removeClass('no-color').addClass('color');
         } else {
@@ -69,7 +66,7 @@ function dropPieceOnBoard(ev) {
   startNum = startNum - coordinatCol;
 
   // Check if move is allowed
-  for (var i = 0; i < pieces[type][1].length; i++) {
+  for (let i = 0; i < pieces[type][1].length; i++) {
     if ($('#' + (startNum + pieces[type][1][i])).hasClass('color')) {
       correct = false;
     }
@@ -90,7 +87,7 @@ function dropPieceOnBoard(ev) {
 
   checkingAnyMoveLeft();
 
-  for ( let i = 1; i <= 3; i++ ) {
+  for (let i = 1; i <= 3; i++) {
     $('#tableId-' + i).removeClass('pieceSizeDraged').addClass('pieceSize');
   }
 }
