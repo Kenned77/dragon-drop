@@ -1,5 +1,4 @@
-
-let pieceCanFit = (type, startNum) => {
+function pieceCanFit(type, startNum) {
   if (isItemInArray(pieces[type][0], startNum)
       || startNum > getLastItemInArray(pieces[type][0])) {
     return false;
@@ -13,7 +12,7 @@ let pieceCanFit = (type, startNum) => {
   return true;
 }
 
-let checkingAnyMoveLeft = () => {
+function checkingAnyMoveLeft() {
   var pieceType = [];
   let moveLeftList = [];
   let canMove = false;
@@ -46,7 +45,7 @@ let checkingAnyMoveLeft = () => {
   }
 }
 
-const endGameAndDisplayFinalScore = () => {
+function endGameAndDisplayFinalScore() {
   let msg = '';
 
   if (score <= 100) {
@@ -72,13 +71,13 @@ const endGameAndDisplayFinalScore = () => {
 
 let handleRow, handleCol, coordinatRow, coordinatCol ;
 
-let convert = (x, y) => {
+function convert(x, y) {
   let newRow = Math.floor(y / 30);
   let newCol = Math.floor(x / 30);
   return [newRow, newCol];
 }
 
-let calculateCoordinates = (event) => {
+function calculateCoordinates(event) {
   const element = $(event.target).closest('table')[0].getBoundingClientRect();
 
   let elementLocation = [element.left, element.top];
@@ -91,7 +90,7 @@ let calculateCoordinates = (event) => {
   coordinatCol = Math.floor(coordinatCol / 30);
 }
 
-let removeTiles = (direction, row, col) => {
+function removeTiles(direction, row, col) {
   if (col > 10 || row > 100) {
     return;
   }
@@ -119,7 +118,7 @@ function updateScore(row, col) {
   $('#score').text(score);
 }
 
-let checkAndRemove = () => {
+function checkAndRemove() {
   var arrRow = [];
   var arrCol = [];
 
