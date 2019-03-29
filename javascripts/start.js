@@ -24,7 +24,7 @@ function startGame() {
 function restartGameAfterLoss() {
   $('.board-tile').removeClass('color').addClass('no-color');
   score = 0;
-  displayScore(score);
+  displayScore();
   createBoardArray();
   getThreeNextPieces();
   toggleStartNewGameButton(true);

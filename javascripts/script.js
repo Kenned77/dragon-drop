@@ -40,7 +40,7 @@ let checkingAnyMoveLeft = () => {
   });
 
   if (!canMove) {
-    displayScore(score);
+    displayScore();
     checkAndRemove();
     endGameAndDisplayFinalScore();
   }
@@ -107,16 +107,16 @@ let removeTiles = (direction, row, col) => {
   }, 50);
 }
 
-let displayScore = (sc, row, col) => {
+function displayScore(row, col) {
   if (row) {
-    sc += row.length * 10;
+    score += row.length * 10;
   }
 
   if (col) {
-    sc += col.length * 10;
+    score += col.length * 10;
   }
 
-  document.getElementById('score').textContent = sc;
+  document.getElementById('score').textContent = score;
 }
 
 let checkAndRemove = () => {
@@ -169,5 +169,5 @@ let checkAndRemove = () => {
     }
   }
 
-  displayScore(score, arrRow, arrCol);
+  displayScore(arrRow, arrCol);
 }
