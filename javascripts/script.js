@@ -123,10 +123,10 @@ let checkAndRemove = () => {
   var arrRow = [];
   var arrCol = [];
 
-  for ( var row = 0; row < 10; row++ ) {
+  for (var row = 0; row < 10; row++) {
     var count = 1;
-    for ( var col = 0; col < 10; col++ ) {
-      if ( arr[row][col] === 1) {
+    for (var col = 0; col < 10; col++) {
+      if (boardArray[row][col] === 1) {
         count++
       }
     }
@@ -136,10 +136,10 @@ let checkAndRemove = () => {
     }
   }
 
-  for ( var col = 0; col < 10; col++ ) {
+  for (var col = 0; col < 10; col++) {
     var count = 1;
-    for ( var row = 0; row < 10; row++ ) {
-      if ( arr[row][col] === 1) {
+    for (var row = 0; row < 10; row++) {
+      if (boardArray[row][col] === 1) {
         count++;
       }
     }
@@ -157,30 +157,19 @@ let checkAndRemove = () => {
     removeTiles('col', 1, col);
   });
 
-  for ( var row = 0; row < arrRow.length; row++ ) {
-    for ( var col = 0; col < 10; col++ ) {
-      arr[row][col] = 0;
+  for (let row = 0; row < arrRow.length; row++) {
+    for (let col = 0; col < 10; col++) {
+      boardArray[row][col] = 0;
     }
   }
 
   for ( var col = 0; col < arrCol.length; col++ ) {
     for ( var row = 0; row < 10; row++ ) {
-      arr[row][arrCol[col]] = 0;
+      boardArray[row][arrCol[col]] = 0;
     }
   }
 
   displayScore(score, arrRow, arrCol);
-}
-
-function createArr(arr) {
-  for (let i = 0; i < 10; i++) {
-    arr[i] = [];
-    for (let j = 0; j < 10; j++) {
-      arr[i][j] = null;
-    }
-  }
-
-  return arr;
 }
 
 function dublicateGridToArr(arr) {
@@ -188,9 +177,9 @@ function dublicateGridToArr(arr) {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       if ($('#' + tileNumber).hasClass('color')) {
-        arr[i][j] = 1;
+        boardArray[i][j] = 1;
       } else {
-        arr[i][j] = 0;
+        boardArray[i][j] = 0;
       }
       tileNumber++;
     }
