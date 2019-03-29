@@ -30,7 +30,7 @@ function checkingAnyMoveLeft() {
 
   pieceType.forEach(function(type) {
     if (type != undefined) {
-      for ( let i = 0; i < moveLeftList.length; i++ ) {
+      for (let i = 0; i < moveLeftList.length; i++) {
         if (pieceCanFit(type, moveLeftList[i])) {
           canMove = true;
           return;
