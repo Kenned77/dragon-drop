@@ -6,13 +6,13 @@ class Piece {
     this.type = type;
 
     this.shape = pieces[type][1];
-    this.shapeSize5 = this.shape.map(function(num) {
+    this.shapeSize5 = this.shape.map(num => {
       let r = Math.floor(num/10);
       let c = num % 10;
       return (r * 5) + c;
     });
 
-    this.shapeSize5.sort(function(a, b){return a-b});
+    this.shapeSize5.sort((a, b) => a - b);
     this.createElement();
   }
 
