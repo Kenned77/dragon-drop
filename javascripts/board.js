@@ -2,23 +2,21 @@
 class Board {
   constructor() {
     this.size = 10;
-    this.element = $("<table>")
+    this.element = $('<table>')
       .attr('ondrop', 'dropPieceOnBoard(event)')
-      .attr('ondragover', 'allowDrop(event)');
-    this.element.addClass('board');
-    this.cellId = 1;
-    for(var i = 0; i < this.size; i++)  {
-      var nextRow = $("<tr>");
-      for(var j = 0; j < this.size; j++) {
-        var nextColumn = $("<td>")
-          .attr('id', this.cellId)
+      .attr('ondragover', 'allowDrop(event)')
+      .addClass('board');
+    for (let row = 0; row < this.size; row++)  {
+      var nextRow = $('<tr>').appendTo(this.element);
+      for(let col = 0; col < this.size; col++) {
+        const cellId = row * this.size + col + 1;
+        $('<td>')
+          .appendTo(nextRow)
+          .attr('id', cellId)
           .on('dragover', captureIdWhenDraggedOver)
           .on('dragleave', removeBackgroundShadow)
           .addClass('no-color');
-        this.cellId++;
-        nextRow.append(nextColumn);
       }
-      this.element.append(nextRow);
     }
   }
 }
