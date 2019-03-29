@@ -1,17 +1,4 @@
 
-
-function captureIdWhenDraggedOver() {
-  let startNum;
-  startNum = parseInt(this.id);
-  startNum = startNum - coordinatRow;
-  startNum = startNum - coordinatCol;
-  placePieceOnBoard(type, startNum, false);
-}
-
-let removeBackgroundShadow = () => {
-  $('td').removeClass('backgroundShadow');
-}
-
 let pieceCanFit = (type, startNum) => {
   if (isItemInArray(pieces[type][0], startNum)
       || startNum > getLastItemInArray(pieces[type][0])) {
@@ -210,16 +197,6 @@ function dublicateGridToArr(arr) {
   }
 }
 
-function restartGameAfterLoss() {
-  for (let i = 1; i <= 100; i++) {
-    $('#' + i).removeClass('color').addClass('no-color');
-  }
 
-  score = 0;
-  displayScore(score);
-  createArr(arr);
-  getThreeNextPieces();
-  toggleStartNewGameButton(true);
-}
 
 

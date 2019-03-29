@@ -19,3 +19,12 @@ function startGame() {
   var gameBoard = new Board();
   $("#board").append(gameBoard.element);
 }
+
+function restartGameAfterLoss() {
+  $('.board-tile').removeClass('color').addClass('no-color');
+  score = 0;
+  displayScore(score);
+  createArr(arr);
+  getThreeNextPieces();
+  toggleStartNewGameButton(true);
+}

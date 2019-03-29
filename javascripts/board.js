@@ -15,8 +15,20 @@ class Board {
           .attr('id', cellId)
           .on('dragover', captureIdWhenDraggedOver)
           .on('dragleave', removeBackgroundShadow)
-          .addClass('no-color');
+          .addClass('no-color board-tile');
       }
     }
   }
+}
+
+function captureIdWhenDraggedOver() {
+  let startNum;
+  startNum = parseInt(this.id);
+  startNum = startNum - coordinatRow;
+  startNum = startNum - coordinatCol;
+  placePieceOnBoard(type, startNum, false);
+}
+
+function removeBackgroundShadow() {
+  $('td').removeClass('backgroundShadow');
 }
